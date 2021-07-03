@@ -1,4 +1,7 @@
 node_modules
 .vscode
-.idea
 coverage
+public
+dist
+*.scss
+*.json
