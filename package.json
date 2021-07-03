@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/uchoasvinicius/movie-grabber/issues"
   },
-  "homepage": "https://github.com/uchoasvinicius/movie-grabber#readme"
+  "homepage": "https://github.com/uchoasvinicius/movie-grabber#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.6"
+  }
 }
