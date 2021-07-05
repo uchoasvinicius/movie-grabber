@@ -1,5 +1,9 @@
 import { MovieModel } from '../models/movie-model'
 
+export type SearchMovieParams = {
+  query: string
+}
+
 export interface SearchMovie {
-  search: (query: string) => Promise<MovieModel>
+  search: (params: SearchMovieParams) => Promise<MovieModel>
 }
