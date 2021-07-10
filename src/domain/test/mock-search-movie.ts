@@ -1,4 +1,4 @@
-import { SearchMovieParams } from '../usecases/search-movie'
+import { SearchMovieParams } from '@/domain/usecases/search-movie'
 import faker from 'faker'
 
 export const mockSearchMovie = (): SearchMovieParams => ({

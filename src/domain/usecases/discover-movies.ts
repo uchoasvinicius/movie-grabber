@@ -1,4 +1,4 @@
-import { MovieModel } from '../models/movie-model'
+import { MovieModel } from '@/domain/models/movie-model'
 
 type DiscoverModel = {
   page: number
