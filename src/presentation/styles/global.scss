@@ -1,0 +1,23 @@
+@import 'colors';
+* {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+
+}
+input[type="text"]{
+  border: 1px solid #ececec;
+  line-height: 40px;
+  border-radius: 4px;
+  padding: 0 8px;
+  outline: none;
+
+  &:focus{
+    border-color: $primary
+  }
+}
