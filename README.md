@@ -1,3 +1,6 @@
 # movie-grabber
 
-Composition Root (main): starting point of the project
+##Instructions:
+- Create a `.env` file on the root of the project
+- `npm install`
+- `npm start`
