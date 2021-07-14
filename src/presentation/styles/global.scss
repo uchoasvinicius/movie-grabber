@@ -5,19 +5,45 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  a{
+    text-decoration: none !important;
+  }
 }
-
+.btn {
+  border: 1px solid $black;
+  padding: 10px;
+  border-radius: 4px;
+  background: $primary;
+  cursor: pointer;
+  margin: 0 5px;
+  color: $white
+}
 body{
-
+  background: #232323;
+  color: $white;
 }
 input[type="text"]{
-  border: 1px solid #ececec;
-  line-height: 40px;
+  border: 1px solid $white;
+  line-height: 38px;
   border-radius: 4px;
   padding: 0 8px;
+  width: 300px;
   outline: none;
-
+  background: $black;
+  color: $white !important;
+  &::placeholder {
+    color: $white;
+  }
   &:focus{
     border-color: $primary
+  }
+}
+.w-100 {
+  width: 100% !important;
+}
+.w-md-100{
+  width: auto;
+  @media screen and (max-width: 768px){
+    width: 100%;
   }
 }

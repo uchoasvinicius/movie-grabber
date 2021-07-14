@@ -1,7 +1,7 @@
 import React from 'react'
-import Styles from './search-styles.scss'
+import Styles from './movie-styles.scss'
 
-const Search: React.FC = () => {
+const Movie: React.FC = () => {
   return (
     <div className="container-fluid">
       <header className={Styles.header}>
@@ -16,4 +16,4 @@ const Search: React.FC = () => {
   )
 }
 
-export default Search
+export default Movie
