@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import './home-styles.scss'
+import './search-styles.scss'
 import { AxiosHttpClient } from '@/infra/http/axios-http-client/axios-http-client'
 import { MovieModel } from '@/interfaces/models/movie-model'
 import Spinner from '@/presentation/components/spinner/spinner'
-import { get } from '@/presentation/hooks/useLocalStorage'
-import MovieCard from '@/presentation/components/movie-card/movie-card'
 
 interface IMovies extends MovieModel {
   isLoading: boolean
@@ -13,15 +11,15 @@ interface IMovies extends MovieModel {
   total_results?: number
 }
 
-const Home: React.FC = () => {
+const Search: React.FC = () => {
   // const searchQuery = useRef<HTMLInputElement | null>(null)
   const [searchQuery, setQuery] = useState('')
-
+  const extImg = 'https://image.tmdb.org/t/p/w400/'
+  const noImg = 'https://advancepetproduct.com/wp-content/uploads/2019/04/no-image.png'
   const [state, setState] = useState<IMovies | any>({
     isLoading: false,
     movies: []
   })
-  const likes = get('FAVORITES')
   const [toggle, setToggle] = useState(false)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -33,7 +31,7 @@ const Home: React.FC = () => {
       if (state.isLoading || !query) {
         return
       }
-      const { body }: any = await axios.get('search/movie', `query=${query}`)
+      const { body }: any = await axios.get('/search/movie', `query=${query}`)
       setState({ isLoading: false, movies: body.results })
     } catch (error) {
       setState((old: IMovies) => ({
@@ -49,7 +47,7 @@ const Home: React.FC = () => {
       <header className="container">
         <nav className={`d-inline-flex ${!toggle ? 'd-block' : 'd-none'}`}>
           <h1 >
-            <img src="img/mv.svg"/>
+            <img alt="Movie Grabber" src="img/mv.svg"/>
           </h1>
           <ul className={`links ${!toggle ? 'd-inline-flex' : 'd-none'}`}>
             <li>
@@ -60,7 +58,7 @@ const Home: React.FC = () => {
             </li>
             <li className={!toggle ? 'd-md-none' : 'd-block'}>
               <a href="#" onClick={() => setToggle((old: boolean) => !old)}>
-                <img src="https://img.icons8.com/material-outlined/24/ffffff/search--v1.png"/>
+                <img alt="Search" src="https://img.icons8.com/material-outlined/24/ffffff/search--v1.png"/>
               </a>
             </li>
 
@@ -91,8 +89,29 @@ const Home: React.FC = () => {
 
       <div className="container">
         <div className="row">
-          {state?.movies?.map((movie: MovieModel) => (
-            <MovieCard key={movie.id} active={likes.includes(movie.id.toString())} movie={movie}/>
+          {state?.movies.map((movie: MovieModel) => (
+            <div key={movie.id} className="col-6 col-sm-4 col-lg-3">
+              <a title={movie.original_title} href={`/movie/${movie.id}`}>
+                <div className="card">
+                  <div className="square">
+                    <div className="square-blur"
+                      style={{ backgroundImage: `url('${((movie.poster_path !== null) ? extImg + movie.poster_path : noImg)}')` }}>
+                    </div>
+
+                    <img alt="no-image"
+                      src={(movie.poster_path !== null) ? extImg + movie.poster_path : noImg}
+                      className="w-100"/>
+
+                  </div>
+
+                  <p className="title">
+                    <a href={`/movie/${movie.id}`}>{movie.original_title}</a>
+                  </p>
+                </div>
+
+              </a>
+            </div>
+
           ))}
         </div>
       </div>
@@ -101,4 +120,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default Search
